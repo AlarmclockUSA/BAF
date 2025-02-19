@@ -1,0 +1,31 @@
+# robots.txt for Brilliance25 Affiliate Program
+
+User-agent: *
+Disallow: /contact
+Disallow: /components/sections/Contact.tsx
+Disallow: /src/components/sections/Contact.tsx
+
+# Block specific crawlers known for scraping
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+# Block archive.org
+User-agent: archive.org_bot
+Disallow: /
+
+# Block Common Crawl
+User-agent: CCBot
+Disallow: /
+
+# Prevent phone number and email scraping
+Noindex: */530-488-9518*
+Noindex: */Matt@brilliantperspectives.com* 
