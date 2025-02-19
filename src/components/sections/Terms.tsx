@@ -5,7 +5,7 @@ const terms = [
     title: 'Program Overview',
     description: 'The Brilliance25 Affiliate Program is designed to promote event registrations through an exclusive network of high-impact partners.',
     points: [
-      'Exclusive program for partners with 500+ registration potential',
+      'Exclusive program for partners with 50+ registration potential',
       'Unique tracking link provided for each affiliate',
       'Sales tracking for both full payments and monthly installments',
       'Real-time dashboard access for performance monitoring'
@@ -13,10 +13,11 @@ const terms = [
   },
   {
     title: 'Commission Structure',
-    description: 'Our two-step commission structure maximizes your earning potential:',
+    description: 'Our three-step commission structure maximizes your earning potential:',
     points: [
-      'Step 1: "Living Limitlessly" Free Event - 100% commission on all Brilliance25 registrations',
-      'Step 2: Brilliance25 Event - $1,000 commission for each Brilliant School of Leadership (BSOL) conversion',
+      'Step 1: Exclusive Limitless Podcast Episode - Host Graham Cooke & Dionne van Zyl for a personalized session with your audience',
+      'Step 2: "Living Limitless" Free Event - $97 per Brilliance25 registration',
+      'Step 3: Brilliance25 Event - $1,000 commission for each Brilliant School of Leadership (BSOL) conversion',
       'Real-time tracking and reporting of all conversions',
       'Commissions paid promptly after each qualifying event'
     ]

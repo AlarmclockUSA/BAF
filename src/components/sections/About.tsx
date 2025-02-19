@@ -5,12 +5,12 @@ import { HeartIcon, CurrencyDollarIcon, UserGroupIcon, SparklesIcon } from '@her
 const features = [
   {
     name: 'Premium Event Value',
-    description: 'Partner with a transformative event featuring Graham Cooke. Your audience gets life-changing content, and you earn 100% of every ticket sale.',
+    description: 'Partner with a transformative event featuring Graham Cooke. Your audience gets life-changing content, and you earn $97 for every ticket sale.',
     icon: SparklesIcon,
   },
   {
     name: 'Two Revenue Streams',
-    description: 'Earn from both ticket sales ($97 per registration) and BSL conversions ($1,000 bonus per conversion) during the event.',
+    description: 'Earn from both ticket sales ($97 per registration) and BSOL conversions ($1,000 bonus per conversion) during the event.',
     icon: CurrencyDollarIcon,
   },
   {
@@ -32,10 +32,10 @@ export default function About() {
         <div className="mx-auto max-w-2xl lg:text-center">
           <h2 className="text-base font-semibold leading-7 text-indigo-600">Why Partner With Us</h2>
           <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Double Your Impact, Maximize Your Earnings
+            Create Impact, Build Income
           </p>
           <p className="mt-6 text-lg leading-8 text-gray-600">
-            Partner with Brilliance25 to create both immediate and long-term income streams. Earn 100% commission on event tickets plus substantial bonuses when attendees join the Brilliant School of Leadership.
+            Partner with Brilliance25 to create both immediate and long-term income streams. Earn $97 per registration plus substantial bonuses when attendees join the Brilliant School of Leadership.
           </p>
         </div>
         <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">

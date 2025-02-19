@@ -22,7 +22,7 @@ export default function Contact() {
               <div className="mt-12 space-y-4">
                 <div className="flex items-center text-lg text-indigo-200">
                   <span className="flex-shrink-0 w-2 h-2 bg-indigo-500 rounded-full mr-3" />
-                  Earn 100% commission on all ticket sales ($97 per registration)
+                  Earn $97 per ticket registration
                 </div>
                 <div className="flex items-center text-lg text-indigo-200">
                   <span className="flex-shrink-0 w-2 h-2 bg-indigo-500 rounded-full mr-3" />

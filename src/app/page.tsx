@@ -27,10 +27,10 @@ export default function Home() {
               Share Transformation, Earn Significantly
             </h1>
             <p className="mt-6 text-base sm:text-lg leading-8 text-gray-600 break-words">
-              Join our exclusive affiliate program and earn 100% of ticket registrations plus $1,000 for every conversion to Brilliant School of Leadership at the event. Partner with Brilliance25 - a transformative 3-day virtual experience with Graham Cooke + Team.
+              Join our exclusive affiliate program and earn $97 per ticket registration plus $1,000 for every conversion to Brilliant School of Leadership at the event. Partner with Brilliance25 - a transformative 3-day virtual experience with Graham Cooke + Team.
             </p>
             <p className="mt-4 text-base sm:text-lg font-semibold text-indigo-600 break-words">
-              Event Date: March 21st-23rd, 2025 | 100% Ticket Commission + $1,000 BSL Bonus
+              Event Date: March 21st-23rd, 2025 | $97 per Ticket + $1,000 Brilliant School of Leadership (BSOL) Enrollment Bonus
             </p>
             <div className="mt-10 flex flex-col sm:flex-row items-center gap-4 sm:gap-x-6">
               <a

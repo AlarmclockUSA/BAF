@@ -1,26 +1,38 @@
 'use client'
 
 import { useState } from 'react'
-import { Tab } from '@headlessui/react'
-import { RocketLaunchIcon, AcademicCapIcon } from '@heroicons/react/24/outline'
+import { Tab, Dialog } from '@headlessui/react'
+import { RocketLaunchIcon, AcademicCapIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import Image from 'next/image'
 
 const steps = [
   {
-    name: 'Step 1: "Living Limitlessly" Free Event',
-    description: 'Start by promoting our free pre-event featuring Graham Cooke, Ray Higdon, and Dionne van Zyl. This event is designed to introduce participants to the transformative journey ahead. Earn 100% commission on any Brilliance25 registrations from this event.',
+    name: 'Step 1: Exclusive Limitless Podcast Episode',
+    description: 'Host Graham Cooke & Dionne van Zyl for an exclusive live Limitless podcast episode on your platform. This personalized session introduces your community to Brilliant through an intimate conversation. One exclusive episode per affiliate.',
     features: [
-      'Free event - easy to promote',
-      'Features all three main speakers',
-      'Perfect introduction to Brilliance25',
-      '100% commission on event conversions'
+      'Exclusive live podcast episode',
+      'Direct access to Graham & Dionne',
+      'Personalized for your audience',
+      'Unique content for your platform'
     ],
     icon: RocketLaunchIcon,
   },
   {
-    name: 'Step 2: Brilliance25 & BSL Opportunity',
-    description: 'As participants experience Brilliance25, they will have the opportunity to join the Brilliant School of Leadership. You earn $1,000 for every BSL conversion during the event.',
+    name: 'Step 2: "Living Limitless" Free Event',
+    description: 'Start by promoting our free pre-event featuring Graham Cooke, Ray Higdon, and Dionne van Zyl. This event is designed to introduce participants to the transformative journey ahead. Earn $97 per Brilliance25 registration from this event.',
     features: [
-      '$1,000 per BSL conversion',
+      'Free event - easy to promote',
+      'Features all three main speakers',
+      'Perfect introduction to Brilliance25',
+      '$97 per event registration'
+    ],
+    icon: RocketLaunchIcon,
+  },
+  {
+    name: 'Step 3: Brilliance25 & BSOL Opportunity',
+    description: 'As participants experience Brilliance25, they will have the opportunity to join the Brilliant School of Leadership. You earn $1,000 for every BSOL conversion during the event.',
+    features: [
+      '$1,000 per BSOL conversion',
       'Ongoing transformation journey',
       'Higher-ticket opportunity',
       'Long-term value for participants'
@@ -35,7 +47,8 @@ function classNames(...classes: string[]) {
 
 function EarningsCalculator() {
   const [registrations, setRegistrations] = useState(50)
-  const [bsolConversionRate, setBsolConversionRate] = useState(0)
+  const [bsolConversionRate, setBsolConversionRate] = useState(14)
+  const [isDisclaimerOpen, setIsDisclaimerOpen] = useState(false)
 
   const ticketPrice = 97
   const bsolCommission = 1000
@@ -46,69 +59,158 @@ function EarningsCalculator() {
   const totalEarnings = ticketEarnings + bsolEarnings
 
   return (
-    <div className="bg-white p-4 sm:p-6 md:p-8 rounded-2xl shadow-sm">
-      <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">
-        Calculate Your Potential Earnings
-      </h3>
-      
-      <div className="space-y-6 sm:space-y-8">
-        <div>
-          <label className="block text-sm sm:text-base font-medium text-gray-700 mb-2">
-            Number of Brilliance25 Registrations: {registrations}
-          </label>
-          <input
-            type="range"
-            min="10"
-            max="500"
-            value={registrations}
-            onChange={(e) => setRegistrations(Number(e.target.value))}
-            className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
-          />
-          <div className="flex justify-between text-xs sm:text-sm text-gray-500 mt-1">
-            <span>10</span>
-            <span>500</span>
+    <>
+      <div className="bg-white p-4 sm:p-6 md:p-8 rounded-2xl shadow-sm">
+        <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">
+          Calculate Your Potential Earnings
+        </h3>
+        
+        <div className="space-y-6 sm:space-y-8">
+          <div>
+            <label className="block text-sm sm:text-base font-medium text-gray-700 mb-2">
+              Number of Brilliance25 Registrations: {registrations}
+            </label>
+            <input
+              type="range"
+              min="10"
+              max="200"
+              value={registrations}
+              onChange={(e) => setRegistrations(Number(e.target.value))}
+              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+            />
+            <div className="flex justify-between text-xs sm:text-sm text-gray-500 mt-1">
+              <span>10</span>
+              <span>200</span>
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-sm sm:text-base font-medium text-gray-700 mb-2">
+              BSOL Conversion Rate: {bsolConversionRate}%
+            </label>
+            <p className="text-xs text-gray-500 mb-2">Based on last year's conversion rate of 14%</p>
+            <input
+              type="range"
+              min="0"
+              max="40"
+              value={bsolConversionRate}
+              onChange={(e) => setBsolConversionRate(Number(e.target.value))}
+              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+            />
+            <div className="flex justify-between text-xs sm:text-sm text-gray-500 mt-1">
+              <span>0%</span>
+              <span>40%</span>
+            </div>
+          </div>
+
+          <div className="pt-4 sm:pt-6 border-t border-gray-200">
+            <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-3">
+              <div className="bg-gray-50 p-3 sm:p-4 rounded-lg">
+                <p className="text-xs sm:text-sm text-gray-600">Event Ticket Earnings</p>
+                <p className="text-xl sm:text-2xl font-bold text-indigo-600">${ticketEarnings.toLocaleString()}</p>
+                <p className="text-xs text-gray-500">From {registrations} registrations</p>
+              </div>
+              <div className="bg-gray-50 p-3 sm:p-4 rounded-lg">
+                <p className="text-xs sm:text-sm text-gray-600">BSOL Commission</p>
+                <p className="text-xl sm:text-2xl font-bold text-indigo-600">${bsolEarnings.toLocaleString()}</p>
+                <p className="text-xs text-gray-500">From {bsolConversions} conversions</p>
+              </div>
+              <div className="bg-indigo-50 p-3 sm:p-4 rounded-lg">
+                <p className="text-xs sm:text-sm text-gray-600">Total Potential Earnings</p>
+                <p className="text-xl sm:text-2xl font-bold text-indigo-600">${totalEarnings.toLocaleString()}</p>
+                <p className="text-xs text-gray-500">Combined earnings</p>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div>
-          <label className="block text-sm sm:text-base font-medium text-gray-700 mb-2">
-            BSOL Conversion Rate: {bsolConversionRate}%
-          </label>
-          <input
-            type="range"
-            min="0"
-            max="40"
-            value={bsolConversionRate}
-            onChange={(e) => setBsolConversionRate(Number(e.target.value))}
-            className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
-          />
-          <div className="flex justify-between text-xs sm:text-sm text-gray-500 mt-1">
-            <span>0%</span>
-            <span>40%</span>
-          </div>
-        </div>
-
-        <div className="pt-4 sm:pt-6 border-t border-gray-200">
-          <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-3">
-            <div className="bg-gray-50 p-3 sm:p-4 rounded-lg">
-              <p className="text-xs sm:text-sm text-gray-600">Event Ticket Earnings</p>
-              <p className="text-xl sm:text-2xl font-bold text-indigo-600">${ticketEarnings.toLocaleString()}</p>
-              <p className="text-xs text-gray-500">From {registrations} registrations</p>
-            </div>
-            <div className="bg-gray-50 p-3 sm:p-4 rounded-lg">
-              <p className="text-xs sm:text-sm text-gray-600">BSOL Commission</p>
-              <p className="text-xl sm:text-2xl font-bold text-indigo-600">${bsolEarnings.toLocaleString()}</p>
-              <p className="text-xs text-gray-500">From {bsolConversions} conversions</p>
-            </div>
-            <div className="bg-indigo-50 p-3 sm:p-4 rounded-lg">
-              <p className="text-xs sm:text-sm text-gray-600">Total Potential Earnings</p>
-              <p className="text-xl sm:text-2xl font-bold text-indigo-600">${totalEarnings.toLocaleString()}</p>
-              <p className="text-xs text-gray-500">Combined earnings</p>
-            </div>
-          </div>
+        <div className="mt-6 text-center">
+          <button
+            onClick={() => setIsDisclaimerOpen(true)}
+            className="text-sm text-indigo-600 hover:text-indigo-800 underline"
+          >
+            View Earnings Disclaimer
+          </button>
         </div>
       </div>
-    </div>
+
+      <Dialog
+        open={isDisclaimerOpen}
+        onClose={() => setIsDisclaimerOpen(false)}
+        className="relative z-50"
+      >
+        <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
+
+        <div className="fixed inset-0 flex items-center justify-center p-4">
+          <Dialog.Panel className="mx-auto max-w-2xl rounded-2xl bg-white p-6 sm:p-8">
+            <div className="flex items-center justify-between mb-6">
+              <Dialog.Title className="text-xl sm:text-2xl font-bold text-gray-900">
+                Brilliance 2025 Affiliate Earnings Disclaimer
+              </Dialog.Title>
+              <button
+                onClick={() => setIsDisclaimerOpen(false)}
+                className="text-gray-500 hover:text-gray-700"
+              >
+                <XMarkIcon className="h-6 w-6" />
+              </button>
+            </div>
+
+            <div className="prose prose-indigo max-w-none">
+              <p className="text-base text-gray-600 mb-6">
+                As a Brilliance 2025 affiliate, we believe in transparency and honesty in all communications about our program. Please read this disclaimer carefully before participating in our affiliate program.
+              </p>
+
+              <h3 className="text-lg font-semibold text-gray-900 mt-6 mb-3">Earnings Disclosure</h3>
+              <p className="text-base text-gray-600 mb-6">
+                The affiliate earnings examples, projections, or testimonials presented in our marketing materials represent potential earnings that affiliates may make promoting Brilliance 2025. These figures are used for illustrative purposes only and should not be considered as guaranteed results or typical earnings.
+              </p>
+
+              <h3 className="text-lg font-semibold text-gray-900 mt-6 mb-3">Individual Results May Vary</h3>
+              <p className="text-base text-gray-600 mb-4">
+                The income you earn as a Brilliance 2025 affiliate depends on multiple factors, including but not limited to:
+              </p>
+              <ul className="list-disc pl-6 mb-6 text-gray-600">
+                <li>Your personal marketing efforts and skills</li>
+                <li>The size and engagement level of your audience</li>
+                <li>The time and resources you invest in promotion</li>
+                <li>Market conditions and competition</li>
+                <li>Your understanding of our message and audience</li>
+              </ul>
+
+              <h3 className="text-lg font-semibold text-gray-900 mt-6 mb-3">No Guarantees</h3>
+              <p className="text-base text-gray-600 mb-6">
+                We do not guarantee that you will earn any specific amount through the Brilliance 2025 affiliate program. We cannot be held responsible for any financial decisions you make based on the potential earnings presented.
+              </p>
+
+              <h3 className="text-lg font-semibold text-gray-900 mt-6 mb-3">Legal Compliance</h3>
+              <p className="text-base text-gray-600 mb-6">
+                As an affiliate, you agree to comply with all applicable laws and regulations regarding affiliate marketing.
+              </p>
+
+              <h3 className="text-lg font-semibold text-gray-900 mt-6 mb-3">Questions or Concerns</h3>
+              <p className="text-base text-gray-600">
+                If you have any questions about these disclaimers or our affiliate program, please contact our support team at{' '}
+                <a 
+                  href="mailto:Matt@brilliantperspectives.com"
+                  className="text-indigo-600 hover:text-indigo-800"
+                >
+                  Matt@brilliantperspectives.com
+                </a>.
+              </p>
+            </div>
+
+            <div className="mt-8 text-center">
+              <button
+                onClick={() => setIsDisclaimerOpen(false)}
+                className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2"
+              >
+                I Understand
+              </button>
+            </div>
+          </Dialog.Panel>
+        </div>
+      </Dialog>
+    </>
   )
 }
 
@@ -175,19 +277,19 @@ export default function Features() {
                         <ul className="space-y-4">
                           <li className="flex items-center">
                             <span className="h-2 w-2 bg-indigo-600 rounded-full mr-3" />
-                            Experience deep spiritual transformation
+                            Our most powerful and transformative event of the year
                           </li>
                           <li className="flex items-center">
                             <span className="h-2 w-2 bg-indigo-600 rounded-full mr-3" />
-                            Learn practical tools for spiritual growth
+                            Reaching a global audience
                           </li>
                           <li className="flex items-center">
                             <span className="h-2 w-2 bg-indigo-600 rounded-full mr-3" />
-                            Connect with a community of believers
+                            Countless testimonies of freedom and discovering what a new nature in Christ really means
                           </li>
                           <li className="flex items-center">
                             <span className="h-2 w-2 bg-indigo-600 rounded-full mr-3" />
-                            Receive prophetic ministry and activation
+                            Opens enrollment to our yearly school "Brilliant School of Leadership"
                           </li>
                         </ul>
                       </div>
@@ -199,23 +301,56 @@ export default function Features() {
                         World-Class Speakers
                       </h3>
                       <div className="space-y-8">
-                        <div>
-                          <h4 className="text-lg font-semibold text-indigo-600">Graham Cooke</h4>
-                          <p className="mt-2 text-gray-600">
-                            Internationally renowned speaker and author, known for his unique perspective on walking with God and prophetic ministry.
-                          </p>
+                        <div className="flex items-start gap-4">
+                          <div className="flex-shrink-0 w-20 h-20 rounded-full border-2 border-indigo-100 overflow-hidden">
+                            <Image
+                              src="/graham.png"
+                              alt="Graham Cooke"
+                              width={80}
+                              height={80}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                          <div>
+                            <h4 className="text-lg font-semibold text-indigo-600">Graham Cooke</h4>
+                            <p className="mt-2 text-gray-600">
+                              Internationally renowned speaker and author, known for his unique perspective on walking with God and prophetic ministry. Brilliant Perspectives.
+                            </p>
+                          </div>
                         </div>
-                        <div>
-                          <h4 className="text-lg font-semibold text-indigo-600">Ray Higdon</h4>
-                          <p className="mt-2 text-gray-600">
-                            Best-selling author and transformational leader, specializing in mindset and personal development.
-                          </p>
+                        <div className="flex items-start gap-4">
+                          <div className="flex-shrink-0 w-20 h-20 rounded-full border-2 border-indigo-100 overflow-hidden">
+                            <Image
+                              src="/ray.png"
+                              alt="Ray Higdon"
+                              width={80}
+                              height={80}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                          <div>
+                            <h4 className="text-lg font-semibold text-indigo-600">Ray Higdon</h4>
+                            <p className="mt-2 text-gray-600">
+                              Speaker, Author and transformative leader specializing in mindset and personal development. Higdon Group.
+                            </p>
+                          </div>
                         </div>
-                        <div>
-                          <h4 className="text-lg font-semibold text-indigo-600">Dionne van Zyl</h4>
-                          <p className="mt-2 text-gray-600">
-                            Gifted minister and teacher, bringing fresh insights into spiritual growth and transformation.
-                          </p>
+                        <div className="flex items-start gap-4">
+                          <div className="flex-shrink-0 w-20 h-20 rounded-full border-2 border-indigo-100 overflow-hidden">
+                            <Image
+                              src="/dionne.jpg"
+                              alt="Dionne van Zyl"
+                              width={80}
+                              height={80}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                          <div>
+                            <h4 className="text-lg font-semibold text-indigo-600">Dionne van Zyl</h4>
+                            <p className="mt-2 text-gray-600">
+                              Gifted minister and teacher, bringing fresh insights into spiritual growth and transformation. Brilliant Perspectives.
+                            </p>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -263,27 +398,28 @@ export default function Features() {
       <div className="bg-gray-50 py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:text-center">
-            <h2 className="text-base font-semibold leading-7 text-indigo-600">Double Your Impact</h2>
+            <h2 className="text-base font-semibold leading-7 text-indigo-600">Your Success Is Our Priority</h2>
             <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Maximize Your Earnings
+              Equipped for Excellence
             </p>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-              Our two-step affiliate program is designed to help you create significant income while making a lasting impact. Start with our free event and progress to higher-ticket opportunities.
+              We provide you with everything needed to succeed - from exclusive podcast content and promotional materials to personalized support and real-time tracking. Our comprehensive program ensures you have the tools and resources to maximize both impact and earnings.
             </p>
           </div>
 
           <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
-            <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
-              {steps.map((step) => (
-                <div key={step.name} className="flex flex-col bg-white p-10 rounded-2xl shadow-sm">
+            <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none">
+              {/* First Two Steps */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div className="flex flex-col bg-white p-10 rounded-2xl shadow-sm">
                   <dt className="flex items-center gap-x-3 text-lg font-semibold leading-7 text-gray-900">
-                    <step.icon className="h-5 w-5 flex-none text-indigo-600" aria-hidden="true" />
-                    {step.name}
+                    <RocketLaunchIcon className="h-5 w-5 flex-none text-indigo-600" aria-hidden="true" />
+                    {steps[0].name}
                   </dt>
                   <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
-                    <p className="flex-auto">{step.description}</p>
+                    <p className="flex-auto">{steps[0].description}</p>
                     <ul className="mt-8 space-y-3">
-                      {step.features.map((feature) => (
+                      {steps[0].features.map((feature) => (
                         <li key={feature} className="flex gap-x-3">
                           <span className="h-2 w-2 bg-indigo-600 rounded-full mt-2" />
                           <span>{feature}</span>
@@ -292,7 +428,44 @@ export default function Features() {
                     </ul>
                   </dd>
                 </div>
-              ))}
+
+                <div className="flex flex-col bg-white p-10 rounded-2xl shadow-sm">
+                  <dt className="flex items-center gap-x-3 text-lg font-semibold leading-7 text-gray-900">
+                    <RocketLaunchIcon className="h-5 w-5 flex-none text-indigo-600" aria-hidden="true" />
+                    {steps[1].name}
+                  </dt>
+                  <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
+                    <p className="flex-auto">{steps[1].description}</p>
+                    <ul className="mt-8 space-y-3">
+                      {steps[1].features.map((feature) => (
+                        <li key={feature} className="flex gap-x-3">
+                          <span className="h-2 w-2 bg-indigo-600 rounded-full mt-2" />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </dd>
+                </div>
+              </div>
+
+              {/* Third Step - Full Width */}
+              <div className="flex flex-col bg-gradient-to-br from-indigo-50 via-white to-indigo-50 p-10 rounded-2xl shadow-lg border border-indigo-100 mt-8">
+                <dt className="flex items-center gap-x-3 text-xl font-bold leading-7 text-indigo-900">
+                  <AcademicCapIcon className="h-6 w-6 flex-none text-indigo-600" aria-hidden="true" />
+                  {steps[2].name}
+                </dt>
+                <dd className="mt-6 flex flex-auto flex-col">
+                  <p className="flex-auto text-lg leading-8 text-indigo-900">{steps[2].description}</p>
+                  <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    {steps[2].features.map((feature) => (
+                      <div key={feature} className="flex items-center gap-x-3 bg-white/80 p-4 rounded-xl">
+                        <span className="h-3 w-3 bg-indigo-600 rounded-full flex-shrink-0" />
+                        <span className="text-base font-medium text-indigo-900">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+                </dd>
+              </div>
             </dl>
 
             <div className="mt-16">
@@ -314,12 +487,12 @@ export default function Features() {
                   Ready to Start Earning?
                 </p>
                 <p className="mt-8 text-lg leading-8 text-gray-300">
-                  Don't miss this opportunity to create significant income while making a lasting impact. Reach out now to secure your position as a Brilliance25 affiliate partner.
+                  Don&apos;t miss this opportunity to create significant income while making a lasting impact. Reach out now to secure your position as a Brilliance25 affiliate partner.
                 </p>
                 <div className="mt-12 space-y-4">
                   <div className="flex items-center text-lg text-indigo-200">
                     <span className="flex-shrink-0 w-2 h-2 bg-indigo-500 rounded-full mr-3" />
-                    Earn 100% commission on all ticket sales ($97 per registration)
+                    Earn $97 per ticket registration
                   </div>
                   <div className="flex items-center text-lg text-indigo-200">
                     <span className="flex-shrink-0 w-2 h-2 bg-indigo-500 rounded-full mr-3" />
