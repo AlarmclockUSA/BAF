@@ -17,7 +17,7 @@ export default function Contact() {
                 Ready to Start Earning?
               </p>
               <p className="mt-8 text-lg leading-8 text-gray-300">
-                Don't miss this opportunity to create significant income while making a lasting impact. Reach out now to secure your position as a Brilliance25 affiliate partner.
+                Don&apos;t miss this opportunity to create significant income while making a lasting impact. Reach out now to secure your position as a Brilliance25 affiliate partner.
               </p>
               <div className="mt-12 space-y-4">
                 <div className="flex items-center text-lg text-indigo-200">
@@ -67,7 +67,7 @@ export default function Contact() {
                     )}
                   </div>
                   <p className="mt-12 text-center text-indigo-200 text-xl">
-                    Let's discuss how you can become part of this exclusive program
+                    Let&apos;s discuss how you can become part of this exclusive program
                   </p>
                 </div>
               </div>

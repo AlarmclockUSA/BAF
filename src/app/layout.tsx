@@ -14,7 +14,9 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
+  minimumScale: 1,
   themeColor: '#ffffff',
+  userScalable: true,
 }
 
 export default function RootLayout({
@@ -24,8 +26,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="h-full">
-      <body className={`${inter.className} antialiased min-h-full`}>
-        <div className="flex min-h-screen flex-col">
+      <body className={`${inter.className} antialiased min-h-full min-w-[200px]`}>
+        <div className="flex min-h-screen flex-col min-w-[200px] overflow-x-hidden">
           <main className="flex-grow">
             {children}
           </main>

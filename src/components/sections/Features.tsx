@@ -29,13 +29,13 @@ const steps = [
   },
 ]
 
-function classNames(...classes) {
+function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
 function EarningsCalculator() {
   const [registrations, setRegistrations] = useState(50)
-  const [bsolConversionRate, setBsolConversionRate] = useState(0) // Start at 0%
+  const [bsolConversionRate, setBsolConversionRate] = useState(0)
 
   const ticketPrice = 97
   const bsolCommission = 1000
@@ -46,14 +46,14 @@ function EarningsCalculator() {
   const totalEarnings = ticketEarnings + bsolEarnings
 
   return (
-    <div className="bg-white p-8 rounded-2xl shadow-sm">
-      <h3 className="text-2xl font-bold text-gray-900 mb-6">
+    <div className="bg-white p-4 sm:p-6 md:p-8 rounded-2xl shadow-sm">
+      <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">
         Calculate Your Potential Earnings
       </h3>
       
-      <div className="space-y-8">
+      <div className="space-y-6 sm:space-y-8">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm sm:text-base font-medium text-gray-700 mb-2">
             Number of Brilliance25 Registrations: {registrations}
           </label>
           <input
@@ -64,14 +64,14 @@ function EarningsCalculator() {
             onChange={(e) => setRegistrations(Number(e.target.value))}
             className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
           />
-          <div className="flex justify-between text-sm text-gray-500 mt-1">
+          <div className="flex justify-between text-xs sm:text-sm text-gray-500 mt-1">
             <span>10</span>
             <span>500</span>
           </div>
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm sm:text-base font-medium text-gray-700 mb-2">
             BSOL Conversion Rate: {bsolConversionRate}%
           </label>
           <input
@@ -82,27 +82,27 @@ function EarningsCalculator() {
             onChange={(e) => setBsolConversionRate(Number(e.target.value))}
             className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
           />
-          <div className="flex justify-between text-sm text-gray-500 mt-1">
+          <div className="flex justify-between text-xs sm:text-sm text-gray-500 mt-1">
             <span>0%</span>
             <span>40%</span>
           </div>
         </div>
 
-        <div className="pt-6 border-t border-gray-200">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <p className="text-sm text-gray-600">Event Ticket Earnings</p>
-              <p className="text-2xl font-bold text-indigo-600">${ticketEarnings.toLocaleString()}</p>
+        <div className="pt-4 sm:pt-6 border-t border-gray-200">
+          <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-3">
+            <div className="bg-gray-50 p-3 sm:p-4 rounded-lg">
+              <p className="text-xs sm:text-sm text-gray-600">Event Ticket Earnings</p>
+              <p className="text-xl sm:text-2xl font-bold text-indigo-600">${ticketEarnings.toLocaleString()}</p>
               <p className="text-xs text-gray-500">From {registrations} registrations</p>
             </div>
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <p className="text-sm text-gray-600">BSOL Commission</p>
-              <p className="text-2xl font-bold text-indigo-600">${bsolEarnings.toLocaleString()}</p>
+            <div className="bg-gray-50 p-3 sm:p-4 rounded-lg">
+              <p className="text-xs sm:text-sm text-gray-600">BSOL Commission</p>
+              <p className="text-xl sm:text-2xl font-bold text-indigo-600">${bsolEarnings.toLocaleString()}</p>
               <p className="text-xs text-gray-500">From {bsolConversions} conversions</p>
             </div>
-            <div className="bg-indigo-50 p-4 rounded-lg">
-              <p className="text-sm text-gray-600">Total Potential Earnings</p>
-              <p className="text-2xl font-bold text-indigo-600">${totalEarnings.toLocaleString()}</p>
+            <div className="bg-indigo-50 p-3 sm:p-4 rounded-lg">
+              <p className="text-xs sm:text-sm text-gray-600">Total Potential Earnings</p>
+              <p className="text-xl sm:text-2xl font-bold text-indigo-600">${totalEarnings.toLocaleString()}</p>
               <p className="text-xs text-gray-500">Combined earnings</p>
             </div>
           </div>
@@ -167,7 +167,7 @@ export default function Features() {
                     <div className="bg-white p-10 rounded-2xl shadow-sm">
                       <div className="space-y-6 text-base leading-7 text-gray-600">
                         <p className="text-lg font-medium text-gray-800">
-                          At Brilliance25, we're inviting you into an extraordinary relationship with God - one where you discover that His focus isn't on fixing what's wrong with you, but on delighting in who you already are in Christ. This is the kind of relationship you were created for.
+                          At Brilliance25, we&apos;re inviting you into an extraordinary relationship with God - one where you discover that His focus isn&apos;t on fixing what&apos;s wrong with you, but on delighting in who you already are in Christ. This is the kind of relationship you were created for.
                         </p>
                         <p>
                           Through powerful teachings, interactive sessions, and prophetic ministry, participants will:
