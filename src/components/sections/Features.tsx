@@ -113,6 +113,8 @@ function EarningsCalculator() {
 }
 
 export default function Features() {
+  const [showContact, setShowContact] = useState(false)
+
   return (
     <>
       {/* About Brilliance25 Section */}
@@ -337,18 +339,29 @@ export default function Features() {
                     </div>
                     
                     <div className="mt-12 space-y-8 text-center">
-                      <a 
-                        href="tel:530-488-9518" 
-                        className="block text-3xl font-medium text-white hover:text-indigo-400 transition-colors"
-                      >
-                        530-488-9518
-                      </a>
-                      <a 
-                        href="mailto:Matt@brilliantperspectives.com" 
-                        className="block text-3xl font-medium text-white hover:text-indigo-400 transition-colors"
-                      >
-                        Matt@brilliantperspectives.com
-                      </a>
+                      {!showContact ? (
+                        <button
+                          onClick={() => setShowContact(true)}
+                          className="block w-full text-3xl font-medium text-white hover:text-indigo-400 transition-colors bg-indigo-600/20 rounded-lg py-4 px-6"
+                        >
+                          Click to Reveal Contact Information
+                        </button>
+                      ) : (
+                        <>
+                          <a 
+                            href="tel:530-488-9518" 
+                            className="block text-3xl font-medium text-white hover:text-indigo-400 transition-colors"
+                          >
+                            530-488-9518
+                          </a>
+                          <a 
+                            href="mailto:Matt@brilliantperspectives.com" 
+                            className="block text-3xl font-medium text-white hover:text-indigo-400 transition-colors"
+                          >
+                            Matt@brilliantperspectives.com
+                          </a>
+                        </>
+                      )}
                     </div>
                     <p className="mt-12 text-center text-indigo-200 text-xl">
                       Let's discuss how you can become part of this exclusive program
