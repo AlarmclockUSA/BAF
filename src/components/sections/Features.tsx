@@ -304,7 +304,7 @@ export default function Features() {
                         <div className="flex items-start gap-4">
                           <div className="flex-shrink-0 w-20 h-20 rounded-full border-2 border-indigo-100 overflow-hidden">
                             <Image
-                              src="/graham.png"
+                              src="/Graham.png"
                               alt="Graham Cooke"
                               width={80}
                               height={80}
@@ -321,7 +321,7 @@ export default function Features() {
                         <div className="flex items-start gap-4">
                           <div className="flex-shrink-0 w-20 h-20 rounded-full border-2 border-indigo-100 overflow-hidden">
                             <Image
-                              src="/ray.png"
+                              src="/Ray.png"
                               alt="Ray Higdon"
                               width={80}
                               height={80}
@@ -338,7 +338,7 @@ export default function Features() {
                         <div className="flex items-start gap-4">
                           <div className="flex-shrink-0 w-20 h-20 rounded-full border-2 border-indigo-100 overflow-hidden">
                             <Image
-                              src="/dionne.jpg"
+                              src="/Dionne.jpg"
                               alt="Dionne van Zyl"
                               width={80}
                               height={80}
